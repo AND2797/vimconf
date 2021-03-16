@@ -10,33 +10,43 @@ set smartindent
 set nowrap
 set noswapfile
 set nobackup
-set undodir=~/.config/nvim/undodir
-set undofile
 set incsearch
 set termguicolors
 set scrolloff=8
 set noshowmode
-set completeopt=menuone,noinsert,noselect
 set colorcolumn=80
 set signcolumn=yes
-
 set cmdheight=2
-
 set updatetime=50
 
-call plug#begin('~/.config/nvim/plugged')
-"Need ripgrep + fd for telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+
+set undodir=~/.config/nvim/undodir
+set undofile
+
+call plug#begin('~/.config/nvim')
+Plug 'arcticicestudio/nord-vim'
 Plug 'gruvbox-community/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch':'release'}
+Plug 'dense-analysis/ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mbbill/undotree'
+
 call plug#end()
 
-colorscheme gruvbox
+colorscheme nord 
 
-let mapleader = " "
+let mapleader=" "
+let g:netrw_browse_split=2
+let g:netrw_banner=0
+let g:netrw_winsize=25
+let g:airline_theme="nord_minimal"
 
-nnoremap <leader>ps <cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<cr>
 
-
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <silent> <leader>+ :vertical resize +5 <CR>
+nnoremap <silent> <leader>- :vertical resize -5 <CR>
